@@ -1,0 +1,19 @@
+[
+{
+"modid": "ZaeksMods",
+"name": "Zaekeons Mods",
+"description": "A configurable set of mods to enhance the Minecraft experience",
+"version": "@VERSION@",
+"url": "http://www.baconcheese.com",
+"updateUrl": "",
+"authorList": ["zaekeon"],
+"credits": "Pahimar for all of his help.",
+"logofile": "/mods/zaeksmod/textures/logo/logo.png",
+"screenshots": [
+],
+"parent": "",
+"dependencies":[]
+
+
+}
+]
