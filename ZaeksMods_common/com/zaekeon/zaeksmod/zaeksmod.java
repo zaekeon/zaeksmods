@@ -42,7 +42,9 @@ public void init(FMLInitializationEvent event)
 {
     
     
-    //LIT STONE
+    //LIT STONE 
+    //TODO reference these creates elsewhere.
+    
     LitStone = new BlockLitStone(500,Material.rock).setUnlocalizedName("LitStone");
     
     GameRegistry.registerBlock(LitStone, Reference.MOD_ID + LitStone.getUnlocalizedName2());
