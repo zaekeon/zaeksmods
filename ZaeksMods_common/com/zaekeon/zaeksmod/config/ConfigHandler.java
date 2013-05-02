@@ -26,6 +26,7 @@ public class ConfigHandler {
         
         BlockInfo.zytaniumOreID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_ORE_NAME, BlockInfo.ZYTANIUM_ORE_DEFAULT_ID).getInt();
         
+        BlockInfo.zytaniumVoidBlackID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_VOID_BLACK_NAME, BlockInfo.ZYTANIUM_VOID_BLACK_DEFAULT_ID).getInt();
         
         //Load-Set Item IDs
         

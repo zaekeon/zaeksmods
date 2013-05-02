@@ -9,10 +9,10 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 
 
-public class BlockLitStone extends Block{
+public class BlockZytaniumVoid extends Block{
     
     
-    public BlockLitStone( int id, Material par2Material)
+    public BlockZytaniumVoid( int id, Material par2Material)
     
     {
         super(id, par2Material);
@@ -28,7 +28,7 @@ public class BlockLitStone extends Block{
     @Override
     public void registerIcons(IconRegister reg)
     {
-        this.blockIcon = reg.registerIcon("zaekmod:LitStone");
+        this.blockIcon = reg.registerIcon("zaekmod:VoidBlack");
     }
     
     

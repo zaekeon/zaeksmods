@@ -12,5 +12,9 @@ public class Reference {
     
     //public static final String VERSION_NUMBER = "@VERSION# (build @BUILD_NUMBER@)";
     
+    
+    public static final String CLIENT_PROXY_CLASS = "com.zaekeon.zaeksmod.core.proxy.ClientProxy";
+    public static final String SERVER_PROXY_CLASS = "com.zaekeon.zaeksmod.core.proxy.CommontProxy";
+    
 
 }

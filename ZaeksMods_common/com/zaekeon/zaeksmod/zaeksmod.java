@@ -3,14 +3,18 @@ package com.zaekeon.zaeksmod;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.zaekeon.zaeksmod.block.BlockInfo;
 import com.zaekeon.zaeksmod.block.BlockLitStone;
 import com.zaekeon.zaeksmod.block.BlockZytaniumOre;
+import com.zaekeon.zaeksmod.block.BlockZytaniumVoid;
 import com.zaekeon.zaeksmod.config.ConfigHandler;
 import com.zaekeon.zaeksmod.item.ItemInfo;
 import com.zaekeon.zaeksmod.item.ItemZytaniumIngot;
 import com.zaekeon.zaeksmod.lib.Reference;
+import com.zaekeon.zaeksmod.core.proxy.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -22,12 +26,19 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.SidedProxy;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version =Reference.VERSION_NUMBER)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)  
 
+
+
+
 public class zaeksmod {
-    
+ 
+@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+public static CommonProxy proxy;
+
     
   //ConfigFile
 
@@ -48,6 +59,7 @@ ConfigHandler.init(event.getSuggestedConfigurationFile());
 
 public static Block LitStone;
 public static Block ZytaniumOre;
+public static Block zytaniumVoidBlack;
 
 //Items
 
@@ -75,6 +87,7 @@ public void init(FMLInitializationEvent event)
     //ZytaniumOre (this calls the registerblockid value for zytanium ore.
     
     ZytaniumOre = new BlockZytaniumOre(BlockInfo.zytaniumOreID,Material.iron).setUnlocalizedName(BlockInfo.ZYTANIUM_ORE_NAME);
+    zytaniumVoidBlack = new BlockZytaniumVoid(BlockInfo.zytaniumVoidBlackID,Material.rock).setUnlocalizedName(BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
     
     
     
@@ -83,6 +96,11 @@ public void init(FMLInitializationEvent event)
     zytaniumIngot = new ItemZytaniumIngot(ItemInfo.zytaniumIngotID).setUnlocalizedName(ItemInfo.ZYTANIUM_INGOT_NAME);
     
     
+    //OreDictionary Support Test
+    //register as, 2nd item to register
+    OreDictionary.registerOre("ingotZytanium", new ItemStack(zytaniumIngot));
+    
+
     
     //Register
     gameRegisters();
@@ -93,6 +111,10 @@ public void init(FMLInitializationEvent event)
     //ZytaniumOreWorldGenCall
     GameRegistry.registerWorldGenerator(new com.zaekeon.zaeksmod.world.WorldGeneratorZaeksmod());
     
+    Non-ore dictionary way
+    //GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.ZytaniumOre.blockID, new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumIngot.itemID, 1, 0), 1.0F);
+    
+    GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.ZytaniumOre.blockID, OreDictionary.getOres("ingotZytanium").get(0), 1.0F);
     
     
     
@@ -105,12 +127,14 @@ private static void gameRegisters(){
     
     GameRegistry.registerBlock(ZytaniumOre, "ZytaniumOre");
     GameRegistry.registerItem(zytaniumIngot, ItemInfo.ZYTANIUM_INGOT_NAME);
+    GameRegistry.registerBlock(zytaniumVoidBlack, BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
     
 }
 
 private static void languageRegisters(){
     LanguageRegistry.addName(ZytaniumOre, "Zytanium Ore");
     LanguageRegistry.addName(zytaniumIngot, "Zytanium Ingot");
+    LanguageRegistry.addName(zytaniumVoidBlack, "Zytanium Black Void");
 }
 
 
