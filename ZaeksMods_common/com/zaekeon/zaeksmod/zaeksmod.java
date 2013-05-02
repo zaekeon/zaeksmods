@@ -2,11 +2,14 @@ package com.zaekeon.zaeksmod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 
-import com.zaekeon.zaeksmod.block.BlockIDs;
+import com.zaekeon.zaeksmod.block.BlockInfo;
 import com.zaekeon.zaeksmod.block.BlockLitStone;
 import com.zaekeon.zaeksmod.block.BlockZytaniumOre;
 import com.zaekeon.zaeksmod.config.ConfigHandler;
+import com.zaekeon.zaeksmod.item.ItemInfo;
+import com.zaekeon.zaeksmod.item.ItemZytaniumIngot;
 import com.zaekeon.zaeksmod.lib.Reference;
 
 import cpw.mods.fml.common.Mod;
@@ -48,7 +51,7 @@ public static Block ZytaniumOre;
 
 //Items
 
-//public static Item zytaniumIngot;
+public static Item zytaniumIngot;
 
 
 
@@ -71,10 +74,21 @@ public void init(FMLInitializationEvent event)
     
     //ZytaniumOre (this calls the registerblockid value for zytanium ore.
     
-    ZytaniumOre = new BlockZytaniumOre(BlockIDs.zytaniumOreID,Material.iron).setUnlocalizedName("ZytaniumOre");
+    ZytaniumOre = new BlockZytaniumOre(BlockInfo.zytaniumOreID,Material.iron).setUnlocalizedName(BlockInfo.ZYTANIUM_ORE_NAME);
     
+    
+    
+    //ITEMS
+    
+    zytaniumIngot = new ItemZytaniumIngot(ItemInfo.zytaniumIngotID).setUnlocalizedName(ItemInfo.ZYTANIUM_INGOT_NAME);
+    
+    
+    
+    //Register
     gameRegisters();
     languageRegisters();
+    
+    
     
     //ZytaniumOreWorldGenCall
     GameRegistry.registerWorldGenerator(new com.zaekeon.zaeksmod.world.WorldGeneratorZaeksmod());
@@ -90,11 +104,13 @@ public void init(FMLInitializationEvent event)
 private static void gameRegisters(){
     
     GameRegistry.registerBlock(ZytaniumOre, "ZytaniumOre");
+    GameRegistry.registerItem(zytaniumIngot, ItemInfo.ZYTANIUM_INGOT_NAME);
     
 }
 
 private static void languageRegisters(){
     LanguageRegistry.addName(ZytaniumOre, "Zytanium Ore");
+    LanguageRegistry.addName(zytaniumIngot, "Zytanium Ingot");
 }
 
 

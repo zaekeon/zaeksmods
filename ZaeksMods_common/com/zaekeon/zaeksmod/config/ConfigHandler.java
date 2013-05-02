@@ -5,9 +5,8 @@ package com.zaekeon.zaeksmod.config;
 
 import java.io.File;
 
-import com.zaekeon.zaeksmod.block.BlockIDs;
-import com.zaekeon.zaeksmod.item.ItemIDs;
-
+import com.zaekeon.zaeksmod.block.BlockInfo;
+import com.zaekeon.zaeksmod.item.ItemInfo;
 import net.minecraftforge.common.Configuration;
 
 public class ConfigHandler {
@@ -25,12 +24,12 @@ public class ConfigHandler {
         
         //Load-Set Block IDs
         
-        BlockIDs.zytaniumOreID = configuration.get(Configuration.CATEGORY_BLOCK, "ZytaniumOre", 501).getInt();
+        BlockInfo.zytaniumOreID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_ORE_NAME, BlockInfo.ZYTANIUM_ORE_DEFAULT_ID).getInt();
         
         
         //Load-Set Item IDs
         
-        ItemIDs.zytaniumIngotID = configuration.get(Configuration.CATEGORY_ITEM, "ZytaniumIngot", 14500).getInt();
+        ItemInfo.zytaniumIngotID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_INGOT_NAME, ItemInfo.ZYTANIUM_INGOT_DEFAULT_ID).getInt();
         
         configuration.save();
         
