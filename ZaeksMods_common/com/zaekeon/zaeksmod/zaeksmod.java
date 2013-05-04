@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.zaekeon.zaeksmod.block.BlockInfo;
 import com.zaekeon.zaeksmod.block.BlockLitStone;
@@ -12,7 +13,10 @@ import com.zaekeon.zaeksmod.block.BlockZytaniumOre;
 import com.zaekeon.zaeksmod.block.BlockZytaniumVoid;
 import com.zaekeon.zaeksmod.config.ConfigHandler;
 import com.zaekeon.zaeksmod.item.ItemInfo;
+import com.zaekeon.zaeksmod.item.ItemZytaniumHardIngot;
 import com.zaekeon.zaeksmod.item.ItemZytaniumIngot;
+import com.zaekeon.zaeksmod.item.ItemZytaniumSheet;
+import com.zaekeon.zaeksmod.item.ItemZytaniumStone;
 import com.zaekeon.zaeksmod.lib.Reference;
 import com.zaekeon.zaeksmod.core.proxy.CommonProxy;
 
@@ -64,6 +68,9 @@ public static Block zytaniumVoidBlack;
 //Items
 
 public static Item zytaniumIngot;
+public static Item zytaniumSheet;
+public static Item zytaniumStone;
+public static Item zytaniumHardIngot;
 
 
 
@@ -94,10 +101,14 @@ public void init(FMLInitializationEvent event)
     //ITEMS
     
     zytaniumIngot = new ItemZytaniumIngot(ItemInfo.zytaniumIngotID).setUnlocalizedName(ItemInfo.ZYTANIUM_INGOT_NAME);
+    zytaniumSheet = new ItemZytaniumSheet(ItemInfo.zytaniumSheetID).setUnlocalizedName(ItemInfo.ZYTANIUM_SHEET_NAME);
+    zytaniumStone = new ItemZytaniumStone(ItemInfo.zytaniumStoneID).setUnlocalizedName(ItemInfo.ZYTANIUM_STONE_NAME);
+    zytaniumHardIngot = new ItemZytaniumHardIngot(ItemInfo.zytaniumHardIngotID).setUnlocalizedName(ItemInfo.ZYTANIUM_HARDINGOT_NAME);
     
     
     //OreDictionary Support Test
     //register as, 2nd item to register
+   
     OreDictionary.registerOre("ingotZytanium", new ItemStack(zytaniumIngot));
     
 
@@ -111,10 +122,36 @@ public void init(FMLInitializationEvent event)
     //ZytaniumOreWorldGenCall
     GameRegistry.registerWorldGenerator(new com.zaekeon.zaeksmod.world.WorldGeneratorZaeksmod());
     
-    Non-ore dictionary way
-    //GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.ZytaniumOre.blockID, new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumIngot.itemID, 1, 0), 1.0F);
+   // Non-ore dictionary way
+
+   //GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.ZytaniumOre.blockID, new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumIngot.itemID, 1, 0), 1.0F);
+    
+    //RegularRecipies
+    
+   //Non Item Stack Way
+   // GameRegistry.addRecipe(new ShapedOreRecipe(com.zaekeon.zaeksmod.zaeksmod.zytaniumStone, true, new Object[] {
+   //         "F F", " X ", "F F", Character.valueOf('F'), "ingotZytanium", Character.valueOf('X'), Item.diamond}));
+    
+    
+    //OreRecipie that results in item stack of 4
+    
+    //ZytaniumStone
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumStone, 2), true, new Object[] {
+            "F F", " X ", "F F", Character.valueOf('F'), "ingotZytanium", Character.valueOf('X'), Item.diamond}));
+    
+    //ZytaniumSheets
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumSheet, 16), true, new Object[] {
+        "FF ", "FF ", Character.valueOf('F'), "ingotZytanium"}));
+ 
+
+    
+    
+    
+    //SMELTING
     
     GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.ZytaniumOre.blockID, OreDictionary.getOres("ingotZytanium").get(0), 1.0F);
+    
+    GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.zytaniumStone.itemID, new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumHardIngot.itemID, 1, 0), 1.0F);
     
     
     
@@ -125,16 +162,28 @@ public void init(FMLInitializationEvent event)
 
 private static void gameRegisters(){
     
+    //BLOCKS
     GameRegistry.registerBlock(ZytaniumOre, "ZytaniumOre");
-    GameRegistry.registerItem(zytaniumIngot, ItemInfo.ZYTANIUM_INGOT_NAME);
     GameRegistry.registerBlock(zytaniumVoidBlack, BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
     
+    //ITEMS
+    GameRegistry.registerItem(zytaniumIngot, ItemInfo.ZYTANIUM_INGOT_NAME);
+    GameRegistry.registerItem(zytaniumSheet, ItemInfo.ZYTANIUM_SHEET_NAME);
+    GameRegistry.registerItem(zytaniumStone, ItemInfo.ZYTANIUM_STONE_NAME);
+    GameRegistry.registerItem(zytaniumHardIngot, ItemInfo.ZYTANIUM_HARDINGOT_NAME);
 }
 
 private static void languageRegisters(){
+    //BLOCKS
+    
     LanguageRegistry.addName(ZytaniumOre, "Zytanium Ore");
-    LanguageRegistry.addName(zytaniumIngot, "Zytanium Ingot");
     LanguageRegistry.addName(zytaniumVoidBlack, "Zytanium Black Void");
+     
+     //ITEMS
+     LanguageRegistry.addName(zytaniumIngot, "Zytanium Ingot");
+     LanguageRegistry.addName(zytaniumSheet, "Zytanium Sheet");
+     LanguageRegistry.addName(zytaniumStone, "Zytanium Stone");
+     LanguageRegistry.addName(zytaniumHardIngot, "Zytanium Hard Ingot");
 }
 
 

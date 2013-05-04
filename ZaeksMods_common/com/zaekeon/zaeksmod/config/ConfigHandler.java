@@ -31,8 +31,12 @@ public class ConfigHandler {
         //Load-Set Item IDs
         
         ItemInfo.zytaniumIngotID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_INGOT_NAME, ItemInfo.ZYTANIUM_INGOT_DEFAULT_ID).getInt();
+        ItemInfo.zytaniumSheetID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_SHEET_NAME, ItemInfo.ZYTANIUM_SHEET_DEFAULT_ID).getInt();
+        ItemInfo.zytaniumStoneID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_STONE_NAME, ItemInfo.ZYTANIUM_STONE_DEFAULT_ID).getInt();
+        ItemInfo.zytaniumHardIngotID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_HARDINGOT_NAME, ItemInfo.ZYTANIUM_HARDINGOT_DEFAULT_ID).getInt();
         
         configuration.save();
+        
         
     }
 }
