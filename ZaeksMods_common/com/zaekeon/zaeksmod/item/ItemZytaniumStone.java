@@ -28,12 +28,12 @@ public class ItemZytaniumStone extends Item {
 
     
    // }
+   
     
-    
-    @Override
+
     @SideOnly(Side.CLIENT)
     public void updateIcons(IconRegister reg){
-        this.iconIndex = reg.registerIcon("zaekmod:" + ItemInfo.ZYTANIUM_STONE_NAME);
+        this.itemIcon = reg.registerIcon("zaekmod:" + ItemInfo.ZYTANIUM_STONE_NAME);
     }
     
     

@@ -18,22 +18,13 @@ public class ItemZytaniumHardIngot extends Item {
     
     
     
-    //@Override
-    
-    
-   // public void updateIcons(IconRegister iconReg)
-   // {
-      //  this.iconIndex = iconReg.registerIcon(ItemInfo.ZYTANIUM_INGOT_NAME);
-        
 
+       
     
-   // }
-    
-    
-    @Override
     @SideOnly(Side.CLIENT)
+    
     public void updateIcons(IconRegister reg){
-        this.iconIndex = reg.registerIcon("zaekmod:" + ItemInfo.ZYTANIUM_HARDINGOT_NAME);
+        this.itemIcon = reg.registerIcon("zaekmod:" + ItemInfo.ZYTANIUM_HARDINGOT_NAME);
     }
     
     
