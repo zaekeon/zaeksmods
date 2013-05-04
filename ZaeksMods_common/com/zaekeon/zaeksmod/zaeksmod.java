@@ -135,6 +135,21 @@ public void init(FMLInitializationEvent event)
     
     //OreRecipie that results in item stack of 4
     
+    
+  //BLOCK RECIPES
+    
+    //blackvoid
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumVoidBlack, 32), true, new Object[] {
+        "F F", " X ", "F F", Character.valueOf('F'), "ingotZytanium", Character.valueOf('X'), Item.dyePowder}));
+    
+    GameRegistry.addRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumVoidBlack, 32), "FFF", "FXF", "FFF", 'F', com.zaekeon.zaeksmod.zaeksmod.zytaniumSheet, 'X', Item.dyePowder); 
+    
+    
+    //litstone
+    GameRegistry.addRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.LitStone, 8), "FFF", "FXF", "FFF", 'F', Block.stone, 'X', Item.lightStoneDust);
+    
+    //ITEM RECIPES
+    
     //ZytaniumStone
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumStone, 2), true, new Object[] {
             "F F", " X ", "F F", Character.valueOf('F'), "ingotZytanium", Character.valueOf('X'), Item.diamond}));
