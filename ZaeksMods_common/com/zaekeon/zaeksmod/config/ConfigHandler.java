@@ -28,6 +28,8 @@ public class ConfigHandler {
         
         BlockInfo.zytaniumVoidBlackID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_VOID_BLACK_NAME, BlockInfo.ZYTANIUM_VOID_BLACK_DEFAULT_ID).getInt();
         
+        BlockInfo.zytaniumColorBlockID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_COLOR_BLOCK__NAME, BlockInfo.ZYTANIUM_COLOR_BLOCK_DEFAULT_ID).getInt();
+        
         //Load-Set Item IDs
         
         ItemInfo.zytaniumIngotID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_INGOT_NAME, ItemInfo.ZYTANIUM_INGOT_DEFAULT_ID).getInt();

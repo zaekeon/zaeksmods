@@ -9,9 +9,11 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import com.zaekeon.zaeksmod.block.BlockInfo;
 import com.zaekeon.zaeksmod.block.BlockLitStone;
+import com.zaekeon.zaeksmod.block.BlockZytaniumColor;
 import com.zaekeon.zaeksmod.block.BlockZytaniumOre;
 import com.zaekeon.zaeksmod.block.BlockZytaniumVoid;
 import com.zaekeon.zaeksmod.config.ConfigHandler;
+import com.zaekeon.zaeksmod.item.ItemBlockColor;
 import com.zaekeon.zaeksmod.item.ItemInfo;
 import com.zaekeon.zaeksmod.item.ItemZytaniumHardIngot;
 import com.zaekeon.zaeksmod.item.ItemZytaniumIngot;
@@ -64,6 +66,8 @@ ConfigHandler.init(event.getSuggestedConfigurationFile());
 public static Block LitStone;
 public static Block ZytaniumOre;
 public static Block zytaniumVoidBlack;
+public static Block zytaniumColorBlock;
+
 
 //Items
 
@@ -72,6 +76,10 @@ public static Item zytaniumSheet;
 public static Item zytaniumStone;
 public static Item zytaniumHardIngot;
 
+//Metadata Blocks
+public static ItemStack colorBlackBlock;
+public static ItemStack colorBlueBlock;
+public static ItemStack colorYellowBlock;
 
 
 @Init
@@ -95,7 +103,6 @@ public void init(FMLInitializationEvent event)
     
     ZytaniumOre = new BlockZytaniumOre(BlockInfo.zytaniumOreID,Material.iron).setUnlocalizedName(BlockInfo.ZYTANIUM_ORE_NAME);
     zytaniumVoidBlack = new BlockZytaniumVoid(BlockInfo.zytaniumVoidBlackID,Material.rock).setUnlocalizedName(BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
-    
     
     
     //ITEMS
@@ -169,6 +176,22 @@ public void init(FMLInitializationEvent event)
     GameRegistry.addSmelting(com.zaekeon.zaeksmod.zaeksmod.zytaniumStone.itemID, new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumHardIngot.itemID, 1, 0), 1.0F);
     
     
+    //Multiblock (metadata blocks)
+    
+ zytaniumColorBlock =  new BlockZytaniumColor(BlockInfo.zytaniumColorBlockID, Material.rock).setUnlocalizedName(BlockInfo.ZYTANIUM_COLOR_BLOCK__NAME);
+ GameRegistry.registerBlock(zytaniumColorBlock, ItemBlockColor.class,  BlockInfo.ZYTANIUM_COLOR_BLOCK__NAME);
+ 
+ //Declare ItemStacks for Metadata blocks
+ colorBlackBlock = new ItemStack(zytaniumColorBlock, 1, 1);
+ colorBlueBlock = new ItemStack(zytaniumColorBlock, 1, 2);
+ colorYellowBlock = new ItemStack(zytaniumColorBlock, 1, 3);
+
+ 
+
+ 
+ 
+    
+    
     
     
     
@@ -180,6 +203,8 @@ private static void gameRegisters(){
     //BLOCKS
     GameRegistry.registerBlock(ZytaniumOre, "ZytaniumOre");
     GameRegistry.registerBlock(zytaniumVoidBlack, BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
+    
+    
     
     //ITEMS
     GameRegistry.registerItem(zytaniumIngot, ItemInfo.ZYTANIUM_INGOT_NAME);
@@ -207,4 +232,9 @@ private static void languageRegisters(){
 public void postInit(FMLPostInitializationEvent event){
     
 }
+
+
+
 }
+
+

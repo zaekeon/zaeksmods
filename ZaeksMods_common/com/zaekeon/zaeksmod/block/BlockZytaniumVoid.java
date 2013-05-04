@@ -36,6 +36,8 @@ public class BlockZytaniumVoid extends Block{
         return this.blockID;
     }
     
+    
+    
     public int quantityDropped(Random rand){
         return 1;
     }
