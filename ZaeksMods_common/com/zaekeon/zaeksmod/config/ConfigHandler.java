@@ -30,6 +30,9 @@ public class ConfigHandler {
         
         BlockInfo.zytaniumColorBlockID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_COLOR_BLOCK__NAME, BlockInfo.ZYTANIUM_COLOR_BLOCK_DEFAULT_ID).getInt();
         
+        BlockInfo.zytaniumFurnaceIdleID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_FURNACE_IDLE_NAME, BlockInfo.ZYTANIUM_FURNACE_IDLE_DEFAULT_ID).getInt();
+        
+        BlockInfo.zytaniumFurnaceBurningID = configuration.get(Configuration.CATEGORY_BLOCK, BlockInfo.ZYTANIUM_FURNACE_BURNING_NAME, BlockInfo.ZYTANIUM_FURNACE_BURNING_DEFAULT_ID).getInt();
         //Load-Set Item IDs
         
         ItemInfo.zytaniumIngotID = configuration.get(Configuration.CATEGORY_ITEM, ItemInfo.ZYTANIUM_INGOT_NAME, ItemInfo.ZYTANIUM_INGOT_DEFAULT_ID).getInt();

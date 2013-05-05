@@ -10,8 +10,10 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import com.zaekeon.zaeksmod.block.BlockInfo;
 import com.zaekeon.zaeksmod.block.BlockLitStone;
 import com.zaekeon.zaeksmod.block.BlockZytaniumColor;
+import com.zaekeon.zaeksmod.block.BlockZytaniumFurnace;
 import com.zaekeon.zaeksmod.block.BlockZytaniumOre;
 import com.zaekeon.zaeksmod.block.BlockZytaniumVoid;
+import com.zaekeon.zaeksmod.client.gui.GuiHandler;
 import com.zaekeon.zaeksmod.config.ConfigHandler;
 import com.zaekeon.zaeksmod.item.ItemBlockColor;
 import com.zaekeon.zaeksmod.item.ItemInfo;
@@ -20,23 +22,27 @@ import com.zaekeon.zaeksmod.item.ItemZytaniumIngot;
 import com.zaekeon.zaeksmod.item.ItemZytaniumSheet;
 import com.zaekeon.zaeksmod.item.ItemZytaniumStone;
 import com.zaekeon.zaeksmod.lib.Reference;
+import com.zaekeon.zaeksmod.tileentity.TileEntityZytaniumFurnace;
 import com.zaekeon.zaeksmod.world.ChestGen;
 import com.zaekeon.zaeksmod.core.proxy.CommonProxy;
+import com.zaekeon.zaeksmod.network.PacketHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.SidedProxy;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version =Reference.VERSION_NUMBER)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)  
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"zaeksmod"}, packetHandler = PacketHandler.class)  
 
 
 
@@ -49,6 +55,10 @@ public static CommonProxy proxy;
     
   //ConfigFile
 
+@Instance
+public static zaeksmod instance = new zaeksmod();
+
+private static GuiHandler guihandler = new GuiHandler();
  
     
 @PreInit
@@ -68,6 +78,9 @@ public static Block LitStone;
 public static Block ZytaniumOre;
 public static Block zytaniumVoidBlack;
 public static Block zytaniumColorBlock;
+
+public static Block zytaniumFurnaceIdle;
+public static Block zytaniumFurnaceBurning;
 
 
 //Items
@@ -89,6 +102,7 @@ public void init(FMLInitializationEvent event)
     
 
     
+    proxy.registerRenderThings(); //proxy
     
     //LIT STONE 
     //TODO reference these creates elsewhere.
@@ -104,6 +118,10 @@ public void init(FMLInitializationEvent event)
     
     ZytaniumOre = new BlockZytaniumOre(BlockInfo.zytaniumOreID,Material.iron).setUnlocalizedName(BlockInfo.ZYTANIUM_ORE_NAME);
     zytaniumVoidBlack = new BlockZytaniumVoid(BlockInfo.zytaniumVoidBlackID,Material.rock).setUnlocalizedName(BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
+    
+    
+    zytaniumFurnaceIdle = new BlockZytaniumFurnace(BlockInfo.zytaniumFurnaceIdleID, false).setHardness(3.5F).setUnlocalizedName(BlockInfo.ZYTANIUM_FURNACE_IDLE_NAME);
+    zytaniumFurnaceBurning = new BlockZytaniumFurnace(BlockInfo.zytaniumFurnaceBurningID, true).setHardness(3.5F).setUnlocalizedName(BlockInfo.ZYTANIUM_FURNACE_BURNING_NAME);
     
     
     //ITEMS
@@ -198,16 +216,21 @@ public void init(FMLInitializationEvent event)
  //need to clean up all these recipes and blocks to separate register classes.   
     
     
-    
-    
+ //move this to different location once this keyword issue is fixed.
+ NetworkRegistry.instance().registerGuiHandler(this, guihandler);
 }
 
 private static void gameRegisters(){
     
     //BLOCKS
-    GameRegistry.registerBlock(ZytaniumOre, "ZytaniumOre");
+    GameRegistry.registerBlock(ZytaniumOre, BlockInfo.ZYTANIUM_ORE_NAME);
     GameRegistry.registerBlock(zytaniumVoidBlack, BlockInfo.ZYTANIUM_VOID_BLACK_NAME);
     
+    GameRegistry.registerBlock(zytaniumFurnaceIdle, BlockInfo.ZYTANIUM_FURNACE_IDLE_NAME);
+    GameRegistry.registerBlock(zytaniumFurnaceBurning, BlockInfo.ZYTANIUM_FURNACE_BURNING_NAME);
+    
+    //TILE ENTITY
+    GameRegistry.registerTileEntity(TileEntityZytaniumFurnace.class, "tileentityZytaniumFurnace");
     
     
     //ITEMS
