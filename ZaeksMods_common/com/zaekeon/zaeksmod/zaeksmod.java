@@ -20,6 +20,7 @@ import com.zaekeon.zaeksmod.item.ItemZytaniumIngot;
 import com.zaekeon.zaeksmod.item.ItemZytaniumSheet;
 import com.zaekeon.zaeksmod.item.ItemZytaniumStone;
 import com.zaekeon.zaeksmod.lib.Reference;
+import com.zaekeon.zaeksmod.world.ChestGen;
 import com.zaekeon.zaeksmod.core.proxy.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
@@ -151,6 +152,7 @@ public void init(FMLInitializationEvent event)
     
     GameRegistry.addRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumVoidBlack, 32), "FFF", "FXF", "FFF", 'F', com.zaekeon.zaeksmod.zaeksmod.zytaniumSheet, 'X', Item.dyePowder); 
     
+  
     
     //litstone
     GameRegistry.addRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.LitStone, 8), "FFF", "FXF", "FFF", 'F', Block.stone, 'X', Item.lightStoneDust);
@@ -187,11 +189,13 @@ public void init(FMLInitializationEvent event)
  colorYellowBlock = new ItemStack(zytaniumColorBlock, 1, 3);
 
  
+ //Recipe that creates a stack of 32 metablocks of id 1.
+ GameRegistry.addRecipe(new ItemStack(com.zaekeon.zaeksmod.zaeksmod.zytaniumColorBlock, 32, 1), "FFF", "FXF", "FFF", 'F', com.zaekeon.zaeksmod.zaeksmod.zytaniumIngot, 'X', Item.dyePowder);
 
- 
+ ChestGen.init();
  
     
-    
+ //need to clean up all these recipes and blocks to separate register classes.   
     
     
     
